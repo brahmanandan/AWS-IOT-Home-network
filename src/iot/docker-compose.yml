@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    image: docker.io/danisla/iot-bed:latest
+    privileged: true
+    network_mode: host
+    env_file: .env
+    tty: true
+    restart: always
+    volumes:
+      - ./device-key.pem:/usr/src/app/device-key.pem:ro
+      - ./device.pem:/usr/src/app/device.pem:ro
+      - ./root-CA.crt:/usr/src/app/root-CA.crt:ro
